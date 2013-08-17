@@ -1,0 +1,22 @@
+#!/usr/bin/ruby -w
+# coding: UTF-8
+
+require File.dirname(__FILE__) + '/../test_helper'
+require 'av_manager'
+require 'traverse'
+
+
+class TestAvManager < Test::Unit::TestCase
+	must "filter out files with unqualified extension or unqualified name" do
+		assert_equal AvManager.get_removable_files('./中文文件夹'), 
+			["./中文文件夹/Fonts.rar",
+			"./中文文件夹/[2月新番][次元字幕组]寝取られファイターヤリっちんぐ！ROUND3（704x396）/感謝下載",
+			"./中文文件夹/[2月新番][次元字幕组]寝取られファイターヤリっちんぐ！ROUND3（704x396）/感謝下載..jpeg",
+		 	"./中文文件夹/中文子文件夹1/normal.rb",
+			"./中文文件夹/中文文件.txt",
+			"./中文文件夹/中文空文件夹2/SIS001全面封殺.jpg",
+			"./中文文件夹/中文空文件夹2/SIS真相.jpg",
+			"./中文文件夹/中文空文件夹2/Sky.jpg",
+			"./中文文件夹/经典.chm"]
+	end
+end

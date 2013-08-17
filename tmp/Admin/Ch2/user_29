@@ -1,0 +1,7 @@
+pulse
+x
+110
+119
+PulseAudio daemon,,,
+/var/run/pulse
+/bin/false

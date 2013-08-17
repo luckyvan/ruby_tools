@@ -1,0 +1,7 @@
+libuuid
+x
+100
+101
+
+/var/lib/libuuid
+/bin/sh

@@ -1,0 +1,7 @@
+lightdm
+x
+104
+111
+Light Display Manager
+/var/lib/lightdm
+/bin/false
