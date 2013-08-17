@@ -1,7 +1,0 @@
-messagebus
-x
-102
-105
-
-/var/run/dbus
-/bin/false

@@ -1,7 +1,0 @@
-avahi-autoipd
-x
-106
-117
-Avahi autoip daemon,,,
-/var/lib/avahi-autoipd
-/bin/false

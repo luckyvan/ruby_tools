@@ -1,7 +1,0 @@
-colord
-x
-103
-108
-colord colour management daemon,,,
-/var/lib/colord
-/bin/false
