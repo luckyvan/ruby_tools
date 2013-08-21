@@ -1,7 +1,0 @@
-avahi
-x
-107
-118
-Avahi mDNS daemon,,,
-/var/run/avahi-daemon
-/bin/false

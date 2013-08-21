@@ -1,7 +1,0 @@
-hplip
-x
-113
-7
-HPLIP system user,,,
-/var/run/hplip
-/bin/false
