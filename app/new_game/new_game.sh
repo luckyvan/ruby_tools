@@ -1,13 +1,17 @@
 #!/bin/bash -x
 
-GAME_ID=1RR2
+GAME_ID=1RR3
 RG_GAME_ID=1RG2
-GAME_ROOT=/mnt/Development/Games/Game-00${GAME_ID}
-PROJ_ROOT=/mnt/Development/projects/Game-00${GAME_ID}
-RG_GAME_ROOT=/mnt/Development/Games/Game-00${RG_GAME_ID}
-RG_PROJ_ROOT=/mnt/Development/projects/Game-00${RG_GAME_ID}
+DEVELOPMENT_ROOT=/mnt/Development
+GAME_ROOT=${DEVELOPMENT_ROOT}/Games/Game-00${GAME_ID}
+PROJ_ROOT=${DEVELOPMENT_ROOT}/projects/Game-00${GAME_ID}
+RG_GAME_ROOT=${DEVELOPMENT_ROOT}/Games/Game-00${RG_GAME_ID}
+RG_PROJ_ROOT=${DEVELOPMENT_ROOT}/projects/Game-00${RG_GAME_ID}
 
 # new Game Package
+if [ -d ${GAME_ROOT} ];then
+	mv ${GAME_ROOT} ${GAME_ROOT}.back
+fi
 cp ${RG_GAME_ROOT} ${GAME_ROOT} -rf
 
 for file in $(find ${GAME_ROOT} -name "*${RG_GAME_ID}*")
@@ -19,6 +23,9 @@ done
 grep ${RG_GAME_ID} ${GAME_ROOT} -r | grep -v Binary | grep -v log | cut -d: -f1 | uniq |xargs sed -i "s/${RG_GAME_ID}/${GAME_ID}/g"
 
 # new Project Package
+if [ -d ${PROJ_ROOT} ];then
+	mv ${PROJ_ROOT} ${PROJ_ROOT}.back
+fi
 cp ${RG_PROJ_ROOT} ${PROJ_ROOT} -rf
 
 mv "${PROJ_ROOT}/Game-00${RG_GAME_ID}" "${PROJ_ROOT}/Game-00${GAME_ID}"
