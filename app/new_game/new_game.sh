@@ -3,6 +3,7 @@
 GAME_ID=1RR3
 RG_GAME_ID=1RG2
 DEVELOPMENT_ROOT=/mnt/Development
+DEVELOPMENT_BACK=${DEVELOPMENT_ROOT}/back
 GAME_ROOT=${DEVELOPMENT_ROOT}/Games/Game-00${GAME_ID}
 PROJ_ROOT=${DEVELOPMENT_ROOT}/projects/Game-00${GAME_ID}
 RG_GAME_ROOT=${DEVELOPMENT_ROOT}/Games/Game-00${RG_GAME_ID}
@@ -10,7 +11,9 @@ RG_PROJ_ROOT=${DEVELOPMENT_ROOT}/projects/Game-00${RG_GAME_ID}
 
 # new Game Package
 if [ -d ${GAME_ROOT} ];then
-	mv ${GAME_ROOT} ${GAME_ROOT}.back
+	mkdir -p ${DEVELOPMENT_BACK}/Games/
+	rm ${DEVELOPMENT_BACK}/Games/* -rf
+	mv ${GAME_ROOT} ${DEVELOPMENT_BACK}/Games/ 
 fi
 cp ${RG_GAME_ROOT} ${GAME_ROOT} -rf
 
@@ -24,7 +27,9 @@ grep ${RG_GAME_ID} ${GAME_ROOT} -r | grep -v Binary | grep -v log | cut -d: -f1 
 
 # new Project Package
 if [ -d ${PROJ_ROOT} ];then
-	mv ${PROJ_ROOT} ${PROJ_ROOT}.back
+	mkdir -p ${DEVELOPMENT_BACK}/projects/
+	rm ${DEVELOPMENT_BACK}/projects/* -rf
+	mv ${PROJ_ROOT} ${DEVELOPMENT_BACK}/projects/ 
 fi
 cp ${RG_PROJ_ROOT} ${PROJ_ROOT} -rf
 
