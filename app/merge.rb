@@ -3,9 +3,10 @@
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
 # default parameters
+root = Dir.exist?("/cygdrive/") ? "/cygdrive/d/Development" : "/mnt/Development",
 params = {
-	"from" => ["/mnt/Development/Games/Games-001RG2"],
-	"to"   => "/mnt/Development/Games/Games-001RN5", 
+	"from" => ["#{root}/Games/Games-001RG2"],
+	"to"   => "#{root}/Games/Games-001RN5", 
 	"ext" => [".sound", ".tga", ".movie"],
 	"exclusion" => ["Messages.movie", "TransitionMessages.movie", "OverReelsMessages.movie", "MathBoxMessages.movie", "RetriggerMessages.movie"],
 }
