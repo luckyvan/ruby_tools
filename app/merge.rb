@@ -3,10 +3,10 @@
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
 # default parameters
-root = Dir.exist?("/cygdrive/") ? "/cygdrive/d/Development" : "/mnt/Development",
+root = Dir.exist?("/cygdrive/") ? "/cygdrive/d/Development" : "/mnt/Development"
 params = {
 	"from" => ["#{root}/Games/Games-001RG2"],
-	"to"   => "#{root}/Games/Games-001RN5", 
+	"to"   => "#{root}/Games/Games-001RN5",
 	"ext" => [".sound", ".tga", ".movie"],
 	"exclusion" => ["Messages.movie", "TransitionMessages.movie", "OverReelsMessages.movie", "MathBoxMessages.movie", "RetriggerMessages.movie"],
 }
@@ -44,15 +44,15 @@ require 'pathname'
 output = ["#!/usr/bin/env bash"]
 
 from.each do |f|
-	resource_files = Pathname.glob("#{f}/**/**").select do |path| 
+	resource_files = Pathname.glob("#{f}/**/**").select do |path|
 		path.file? and extnames.include?(path.extname)
 	end
 
-	resource_files.each do|path| 
+	resource_files.each do|path|
 		if (not exclusion.include?(path.basename.to_s)) then
 			new_dir = path.dirname.sub(f, to)
 			new_path = path.sub(f, to)
-			if not new_dir.exist? 
+			if not new_dir.exist?
 				output << "mkdir -p #{new_dir}"
 			end
 			output << "cp #{path} #{new_path}"
@@ -62,7 +62,7 @@ end
 
 output = output.uniq
 File.open("merge.sh","w") do |file|
-	output.each {|line| file.puts (line)}	
+	output.each {|line| file.puts (line)}
 end
 
 File.chmod(0755, "merge.sh")

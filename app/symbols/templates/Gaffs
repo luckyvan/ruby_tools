@@ -1,0 +1,90 @@
+/* (c) Copyright 2010 International Game Technology */
+/*
+   $Revision: 5$
+
+   Purpose: Configuration script file for the ShowConfig (ShowGaff).
+
+   Modifications:
+      Author            Date        Explanation
+      ---------------   ----------  ------------
+      Nicole Beaulieu   21 Sep 2001 Created.
+*/
+
+// Configure the show presentation control panel.
+ShowConfig ()
+{
+   // GameConfig Objects:
+   new SlotConfig ("Stacked Wilds")
+   {
+      // Configure the winning stops for this category.
+      addStops (4, 2, 47, 39, 14);
+
+      // This config should be played every X number of games.
+      includeInGameCycle (false);
+   }
+   new SlotConfig ("Free Games")
+   {
+      // Configure the winning symbols for this category.
+      addSlotScatteredCategory (3, "SC");
+
+      // This config should be played every X number of games.
+      includeInGameCycle (false);
+   }
+   new SlotConfig ("Free Games + Retrigger")
+   {
+      // Configure the winning stops for this category.
+      addStops (0, 23, 10, 6, 0,
+                0, 23, 10, 6, 0);
+
+      // This config should be played every X number of games.
+      includeInGameCycle (false);
+   }
+   new SlotConfig ("Free Games + Base Wins")
+   {
+      // Configure the winning stops for this category.
+      addStops (5, 67, 42, 5, 67);
+
+      // This config should be played every X number of games.
+      includeInGameCycle (false);
+   }
+   new SlotConfig ("Line grouping on max bet")
+   {
+      // Configure the winning stops for this category.
+      addStops (5, 33, 6, 5, 4);
+
+      // This config should be played every X number of games.
+      includeInGameCycle (false);
+   }
+   new SlotConfig ("Mixed Line Win")
+   {
+      addStops (59, 32, 80, 33, 12);
+      includeInGameCycle (false);
+   }
+   // MoneyConfig Objects:
+   new MoneyConfig ("Add Credits")
+   {
+      // Define in base units (i.e., cents), the number of credits that will be added to the
+      // machine if this option is selected.
+      addMoney (10000);
+   }
+
+   // AttractConfig Objects:
+   new AttractConfig ("Attract")
+   {
+      // Enable attract gaffing. Passing true to the enable method will add an option to
+      // the menu for attract gaffing. False will cause the show code to omit this option.
+      enable (true);
+   }
+
+   // OptionConfig Objects:
+   new OptionConfig ("Exit")
+   {
+      setOption ("Cancel");
+   }
+
+   // Configure the gaff menu options from the script.
+   configureFromScript ("System.Show/Scripts/Menu.Show.script");
+
+   // Configure the number of games to play before forcing a game.
+   setGameCycleCount (0);
+}
