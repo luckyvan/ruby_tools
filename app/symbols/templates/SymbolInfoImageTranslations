@@ -46,7 +46,7 @@ local symbol_image_translations =
    ["English"] =
    {
       <% symbols.each do |s| %>
-      ["<%= s%>"] = ["<%= s%>.tga"],
+      ["<%= s%>"] = "<%= s%>.tga",
       <% end %>
    },
    
