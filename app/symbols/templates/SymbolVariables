@@ -82,15 +82,15 @@ symbols.list =
    },
 
 <% movie_symbols.each do |s| %>
-   <%= s%> =
+   <%= s[:name]%> =
    {
       -- Set tbe background member to false if you don't want any background to be loaded
       background = false,
       -- Note defining the same movie for multiple uses will load the movie only once
       movies =
       {
-         intro          = {image = "<%= s.movies[0]%>", loops = 1 , pop = false},
-         win_cycle      = {image = "<%= s.movies[1]%>", pop = true},
+         intro          = {image = "<%= s[:movies][0]%>", loops = 1 , pop = false},
+         win_cycle      = {image = "<%= s[:movies][1]%>", pop = true},
       },
       -- Set the sound member for this symbol to have a symbol sound configured
       sound = true,

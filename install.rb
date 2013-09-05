@@ -21,7 +21,8 @@ app_dir = file_dir + '/app/'
 softlinks = {
   "create_file.rb" => "ct_f",
   "merge.rb" => "merge",
-  "new_game.rb" => "ng"
+  "new_game.rb" => "ng",
+  "symbols.rb" => "symbols",
 }
 
 Dir.glob(app_dir + '*').each do |f|
