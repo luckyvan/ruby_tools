@@ -119,6 +119,15 @@ class Stage < Element
 end
 
 class SlotGame < Stage
+  def wins
+    content.select{|c| c.name == "win evaluation" }[0].content
+  end
+
+  def trigger_index
+    wins.index do |w|
+      w[:equations][0][:right_op].include?("trigger")
+    end
+  end
 end
 
 class BaseGame < SlotGame
