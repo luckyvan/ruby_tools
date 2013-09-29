@@ -40,4 +40,8 @@ class TestPaytableScanner < Test::Unit::TestCase
                   "F5", "F6", "F7", "F8", "D1","B1"], @scanner1.base.symbols
   end
 
+  must "has a win category which can lead to Stage1" do
+    assert_equal 150, @scanner.base.trigger_index
+    assert_equal 80, @scanner1.base.trigger_index
+  end
 end
