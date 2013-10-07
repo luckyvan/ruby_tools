@@ -23,6 +23,7 @@ softlinks = {
   "merge.rb" => "merge",
   "new_game.rb" => "ng",
   "symbols.rb" => "symbols",
+  "required_updates.rb" => "ru",
 }
 
 Dir.glob(app_dir + '*').each do |f|
