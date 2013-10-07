@@ -24,6 +24,7 @@ softlinks = {
   "new_game.rb" => "ng",
   "symbols.rb" => "symbols",
   "required_updates.rb" => "ru",
+  "reference_game_generator.rb" => "rgg",
 }
 
 Dir.glob(app_dir + '*').each do |f|
