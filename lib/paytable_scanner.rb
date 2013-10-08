@@ -135,6 +135,31 @@ class BaseGame < SlotGame
     symbol_defines = content.select {|elem| elem.name =~ /symbol defines/}
     symbol_defines[0].collect {|eqa| eqa[:right_op]}
   end
+
+  def symbol_substitutions
+    content.find {|elem| elem.name =~ /symbol substitutions/}.content.inject({})do |h,s|
+      h[ s[:left_op] ] = s[:right_op]
+      h
+    end
+  end
+
+  def bonus_symbol
+    wins = wins()
+    index = trigger_index()
+    scatters = wins[trigger_index][:equations][1][:right_op].split(/\s*,\s*/)
+    symbols = symbols()
+    substitutions = symbol_substitutions
+
+    sym = nil
+    scatters.each do |s|
+      if ((s != "XX") and (substitutions.keys.include?(s))) then
+        sym = substitutions[s].split(/\s*,\s*/)[0]
+      else
+        sym = s if symbols.include? s
+      end
+    end
+    sym
+  end
 end
 
 class BonusGame < SlotGame

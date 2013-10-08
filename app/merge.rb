@@ -41,7 +41,7 @@ fail "Invalid to path " + to unless File.directory?(to)
 #retrieve files satisfying the extension requirement
 require 'pathname'
 
-output = ["#!/usr/bin/env bash"]
+output = ["#!/usr/bin/env bash -x"]
 
 from.each do |f|
 	resource_files = Pathname.glob("#{f}/**/**").select do |path|

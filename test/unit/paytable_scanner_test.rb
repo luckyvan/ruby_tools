@@ -44,4 +44,9 @@ class TestPaytableScanner < Test::Unit::TestCase
     assert_equal 150, @scanner.base.trigger_index
     assert_equal 80, @scanner1.base.trigger_index
   end
+
+  must "have valid bonus symbol" do
+    assert_equal "BN", @scanner.base.bonus_symbol
+    assert_equal "B1", @scanner1.base.bonus_symbol
+  end
 end
