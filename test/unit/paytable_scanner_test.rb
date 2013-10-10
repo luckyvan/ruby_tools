@@ -29,8 +29,18 @@ class TestPaytableScanner < Test::Unit::TestCase
   end
 
   must "include RMLP" do
-    assert_equal false, @scanner.include?(:rmlp)
-    assert_equal true, @scanner1.include?(:rmlp)
+    assert_nil @scanner.rmlp
+    assert_not_nil @scanner1.rmlp
+  end
+
+  must "include doubleup based on paytable" do
+    assert_not_nil @scanner1.doubleup
+    assert_nil @scanner.doubleup
+  end
+
+  must "include bonus based on paytable" do
+    assert_not_nil @scanner1.bonus
+    assert_not_nil @scanner.bonus
   end
 
   must "has correct symbol sets" do

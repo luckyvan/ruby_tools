@@ -6,7 +6,7 @@ require 'pathname'
 
 class PaytableScanner
   attr_accessor :elements, :stages
-  attr_accessor :rmlp, :base
+  attr_accessor :rmlp, :base, :doubleup, :bonus
 
   def initialize
     @elements = []
@@ -19,12 +19,6 @@ class PaytableScanner
     while (!tokens.empty?) do
       elem, tokens = get_element( tokens )
       @elements << elem
-    end
-  end
-
-  def include?(feature)
-    case feature
-    when :rmlp then return not(@rmlp == nil)
     end
   end
 
@@ -54,8 +48,21 @@ private
 
     case elem.name
     when /base game/ then @base = BaseGame.new(elem.name, elem.content); stages << @base
-    when /Stage\d/ then @stages << ((elem.content[0].name =~ /slot/) ? BonusGame.new(elem.name, elem.content) : Stage.new(elem.name, elem.content))
-    when /RMLPFlash/ then @rmlp = Rmlp.new(elem.name, elem.content); stages << @rmlp
+    when /Stage(\d)/ then
+      index = $1
+      game = nil
+      if (elem.content[0].name =~ /slot/) then
+        game = BonusGame.new(elem.name, elem.content)
+        @bonus = game
+      else
+        game = DoubleUp.new(elem.name, elem.content)
+        @doubleup = game
+      end
+      game.index = index
+      @stages << game
+    when /RMLPFlash/ then
+      @rmlp = Rmlp.new(elem.name, elem.content); stages << @rmlp
+      @rmlp.index = stages.length - 1
     end
 
     return elem, tokens
@@ -163,8 +170,14 @@ class BaseGame < SlotGame
 end
 
 class BonusGame < SlotGame
+  attr_accessor :index
+end
+
+class DoubleUp< Stage
+  attr_accessor :index
 end
 
 class Rmlp < Stage
+  attr_accessor :index
 end
 

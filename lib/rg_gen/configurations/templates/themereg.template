@@ -59,4 +59,8 @@ Config=Resources/Generic/Base/Configuration/Themes/100L<%= gid %>-03-000.config
 <% end %>
 
 [OptionalFeatures]
+<% if rmlp then %>
+FeatureDescriptor=EBG
+<% end %>
 FeatureDescriptor=GameAnalysis
+
